@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="dev2gigs@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="dev2gigs">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysamples"/>
+    <schema id="5" parent="1" name="mysql"/>
+    <schema id="6" parent="1" name="performance_schema"/>
+    <schema id="7" parent="1" name="sys"/>
+    <table id="8" parent="2" name="artist">
+      <Comment>Künstler</Comment>
+    </table>
+    <table id="9" parent="2" name="artist_gig">
+      <Comment>Künstler Je Gig</Comment>
+    </table>
+    <table id="10" parent="2" name="city">
+      <Comment>Städtenamen</Comment>
+    </table>
+    <table id="11" parent="2" name="genre">
+      <Comment>Musikkategorie</Comment>
+    </table>
+    <table id="12" parent="2" name="gig">
+      <Comment>Alle Gigs</Comment>
+    </table>
+    <table id="13" parent="2" name="role">
+      <Comment>Benutzerrolle</Comment>
+    </table>
+    <table id="14" parent="2" name="user">
+      <Comment>Enthält Benutzer</Comment>
+    </table>
+    <table id="15" parent="2" name="user_gig">
+      <Comment>Benutzer Je Gig</Comment>
+    </table>
+    <column id="16" parent="8" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="17" parent="8" name="artist_name">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="18" parent="8" name="artist_artist_name_uindex">
+      <ColNames>artist_name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="19" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="20" parent="8" name="artist_artist_name_uindex">
+      <ColNames>artist_name</ColNames>
+      <UnderlyingIndexName>artist_artist_name_uindex</UnderlyingIndexName>
+    </key>
+    <column id="21" parent="9" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="22" parent="9" name="artist_fk">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="9" name="gig_fk">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="24" parent="9" name="genre_fk">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="9" name="time">
+      <Position>5</Position>
+      <DataType>time|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="26" parent="9" name="artist_gig_artist_id_fk">
+      <ColNames>artist_fk</ColNames>
+    </index>
+    <index id="27" parent="9" name="artist_gig_gig_id_fk">
+      <ColNames>gig_fk</ColNames>
+    </index>
+    <index id="28" parent="9" name="artist_gig_genre_id_fk">
+      <ColNames>genre_fk</ColNames>
+    </index>
+    <key id="29" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="30" parent="9" name="artist_gig_artist_id_fk">
+      <ColNames>artist_fk</ColNames>
+      <RefSchemaName>dev2gigs</RefSchemaName>
+      <RefTableName>artist</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <foreign-key id="31" parent="9" name="artist_gig_gig_id_fk">
+      <ColNames>gig_fk</ColNames>
+      <RefSchemaName>dev2gigs</RefSchemaName>
+      <RefTableName>gig</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <foreign-key id="32" parent="9" name="artist_gig_genre_id_fk">
+      <ColNames>genre_fk</ColNames>
+      <RefSchemaName>dev2gigs</RefSchemaName>
+      <RefTableName>genre</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="33" parent="10" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="34" parent="10" name="city_name">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="35" parent="10" name="city_city_name_uindex">
+      <ColNames>city_name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="36" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="37" parent="10" name="city_city_name_uindex">
+      <ColNames>city_name</ColNames>
+      <UnderlyingIndexName>city_city_name_uindex</UnderlyingIndexName>
+    </key>
+    <column id="38" parent="11" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="39" parent="11" name="genre_name">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="40" parent="11" name="genre_genre_name_uindex">
+      <ColNames>genre_name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="41" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="42" parent="11" name="genre_genre_name_uindex">
+      <ColNames>genre_name</ColNames>
+      <UnderlyingIndexName>genre_genre_name_uindex</UnderlyingIndexName>
+    </key>
+    <column id="43" parent="12" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="44" parent="12" name="date">
+      <Position>2</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="12" name="city_fk">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="12" name="deleted">
+      <Position>4</Position>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <index id="47" parent="12" name="gig_city_id_fk">
+      <ColNames>city_fk</ColNames>
+    </index>
+    <key id="48" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="49" parent="12" name="gig_city_id_fk">
+      <ColNames>city_fk</ColNames>
+      <RefSchemaName>dev2gigs</RefSchemaName>
+      <RefTableName>city</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="50" parent="13" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="51" parent="13" name="name">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <column id="52" parent="13" name="description">
+      <Position>3</Position>
+      <DataType>varchar(200)|0</DataType>
+    </column>
+    <column id="53" parent="13" name="is_default">
+      <Position>4</Position>
+      <DataType>tinyint(4)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <index id="54" parent="13" name="role_name_uindex">
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="55" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="56" parent="13" name="role_name_uindex">
+      <ColNames>name</ColNames>
+      <UnderlyingIndexName>role_name_uindex</UnderlyingIndexName>
+    </key>
+    <column id="57" parent="14" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="58" parent="14" name="login">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="59" parent="14" name="password">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="60" parent="14" name="username">
+      <Position>4</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;benutzer&apos;</DefaultExpression>
+    </column>
+    <column id="61" parent="14" name="role_fk">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="62" parent="14" name="user_login_uindex">
+      <ColNames>login</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="63" parent="14" name="user_role_id_fk">
+      <ColNames>role_fk</ColNames>
+    </index>
+    <key id="64" parent="14" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="65" parent="14" name="user_login_uindex">
+      <ColNames>login</ColNames>
+      <UnderlyingIndexName>user_login_uindex</UnderlyingIndexName>
+    </key>
+    <foreign-key id="66" parent="14" name="user_role_id_fk">
+      <ColNames>role_fk</ColNames>
+      <RefSchemaName>dev2gigs</RefSchemaName>
+      <RefTableName>role</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="67" parent="15" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="68" parent="15" name="user_fk">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="69" parent="15" name="gig_fk">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="70" parent="15" name="user_gig_gig_id_fk">
+      <ColNames>gig_fk</ColNames>
+    </index>
+    <index id="71" parent="15" name="user_gig_user_id_fk">
+      <ColNames>user_fk</ColNames>
+    </index>
+    <key id="72" parent="15" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="73" parent="15" name="user_gig_user_id_fk">
+      <ColNames>user_fk</ColNames>
+      <RefSchemaName>dev2gigs</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <foreign-key id="74" parent="15" name="user_gig_gig_id_fk">
+      <ColNames>gig_fk</ColNames>
+      <RefSchemaName>dev2gigs</RefSchemaName>
+      <RefTableName>gig</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>

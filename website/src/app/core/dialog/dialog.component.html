@@ -1,0 +1,17 @@
+<div id="dialog_container" #dialogView>
+  <div class="greyModal" ng-click="dismiss()">
+  </div>
+  <div class="greyModal modalContent panel" style="padding: 0;" ng-click="avoidClick()">
+    <div class="panel-heading">
+      <h4>{{title}}</h4>
+    </div>
+    <div class="panel-content" style="overflow-wrap: break-word; padding: 10px" [innerHTML]="html">
+
+    </div>
+    <div class="panel-footer">
+      <div class="btn-group">
+        <button class="btn btn-default" *ngFor="let button of buttons;" (click)="button.action()">{{button.title}}</button>
+      </div>
+    </div>
+  </div>
+</div>

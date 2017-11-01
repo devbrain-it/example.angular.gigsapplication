@@ -1,0 +1,85 @@
+<div class="navbar-item">
+  <div class="navbar-item-title">
+    {{title}}
+  </div>
+  <div class="navbar-item-content">
+    <div [ngSwitch]="viewId">
+      <div *ngSwitchCase="loginState.REGISTER" #Registrierungsformular>
+        <form action="submit">
+          <div class="form-group">
+            <label>Anmeldename</label>
+            <input class="form-control" id="registerUserName" type="text" [value]="userName" (input)="userName = $event.target.value">
+            <label>Passwort</label>
+            <input class="form-control" type="password" [value]="password" (input)="password = $event.target.value">
+            <label>Passwort-Wiederholung</label>
+            <input class="form-control" type="password" [value]="passwordrepeat" (input)="passwordrepeat = $event.target.value">
+            <label>Operatortyp</label>
+            <select class="form-control" (change)="onRegisterOperatorTypeChanged($event.target.value)">
+                <option *ngFor="let item of operatortypes" [value]="item.value" [label]="item.value" [selected]="item.select"></option>
+              </select>
+            <div style="font-size: 10pt">
+              <i>{{loginDescription}}</i>
+            </div>
+            <div class="btn-group h-center" style="margin-top: 5px;">
+              <button class="btn btn-default" (click)="onRegisterClicked()">Registrieren</button>
+              <button class="btn btn-success" (click)="onRegisterCancelClicked()">Abbrechen</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div *ngSwitchCase="loginState.PROFILE" #Profil>
+        <form action="submit">
+          <div class="form-group">
+            <label>Anmeldename</label>
+            <input class="form-control" type="text" [value]="userName" (input)="userName = $event.target.value" [disabled]="disabledUserName">
+            <label>Passwort</label>
+            <input class="form-control" type="password" [value]="password" (input)="password = $event.target.value">
+            <label>Passwort-Wiederholung</label>
+            <input class="form-control" type="password" [value]="passwordrepeat" (input)="passwordrepeat = $event.target.value">
+            <label>Operatortyp</label>
+            <select class="selectpicker form-control" (change)="onRegisterOperatorTypeChanged($event.target.value)">
+              <option *ngFor="let item of operatortypes" [value]="item.value" [label]="item.value" [selected]="item.select"></option>
+            </select>
+            <div style="font-size: 10pt; overflow-wrap: break-word">
+              <i>{{loginDescription}}</i>
+            </div>
+            <div class="btn-group h-center" style="margin-top: 5px">
+              <button class="btn btn-default" (click)="onProfileChangeClickedSubmit()">Ändern</button>
+              <button class="btn btn-danger" (click)="onProfileChangeClickedSubmit()">Löschen</button>
+              <button class="btn btn-default" (click)="onProfileCancelClicked()">Zurück</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div *ngSwitchCase="loginState.LOGGED_IN" #Logoutmaske>
+        <form action="submit">
+          <div class="form-group">
+            <strong><i>Hallo {{getUserDisplayedName()}} :-)</i></strong>
+            <br>
+            <div class="btn-group h-center" style="margin-top: 10px;">
+              <button class="btn btn-default" (click)="onLogoutClicked()">Abmelden</button>
+              <button class="btn btn-default" (click)="onProfileClicked()">Profil</button>
+              <button class="btn btn-default" *ngIf="isModerator" (click)="onShowGigEditorClicked()">{{moderatorButtonText}}</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div *ngSwitchCase="loginState.LOGIN" #Loginmaske>
+        <form action="submit">
+          <div class="form-group">
+            <label>Anmeldename</label>
+            <input class="form-control" id="login_user" type="text" [value]="userName" (input)="userName = $event.target.value" />            Passwort
+            <input class="form-control" id="login_pw" type="password" [value]="password" (input)="password = $event.target.value" />
+            <div class="btn-group h-center" style="margin-top: 10px">
+              <button class="btn btn-default" (click)="onRegisterClicked()">Registrieren ...</button>
+              <button class="btn btn-default" (click)="onLoginClicked()">Anmelden</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

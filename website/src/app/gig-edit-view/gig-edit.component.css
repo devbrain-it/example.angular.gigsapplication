@@ -1,0 +1,5 @@
+.wrapVertical  {
+    overflow-wrap: break-word;
+    height: auto;
+    margin-top: 5px;
+}

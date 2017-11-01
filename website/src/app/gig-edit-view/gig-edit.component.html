@@ -1,0 +1,105 @@
+<div class="d-flex justify-content-start">
+    <div class="panel pull-left" #gigEditView style="margin-right: 10px">
+        <div class="panel-heading">
+            <h4>Gig-Editor</h4>
+            <hr>
+            <h4 *ngIf="gig == null || gig.id == 0">Neuer Gig</h4>
+            <h4 *ngIf="gig != null && gig.id > 0">Gig # {{gig.id}} bearbeiten</h4>
+        </div>
+        <form class="panel-content" style="padding: 10px; padding-top: 0">
+            <div class="form-group">
+                <label>Datum</label>
+                <input class="form-control" type="date">
+                <label>Zeit</label>
+                <input class="form-control" type="time">
+
+                <!-- form inline -->
+                <label>Stadt</label>
+                <form class="form-inline">
+                    <select class="form-control selectpicker" style="width: 200px">
+                        <option *ngFor="let city of cities" [selected]="city.selected">{{city.name}}</option>
+                    </select>
+                    <button class="btn btn-danger nomargin" (click)="onCityDeleteButtonClicked()">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button>
+                    <button class="btn btn-default nomargin" (click)="onCityEditButtonClicked()">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </button>
+                    <input class="form-control" title="Stadtname zum Anlegen oder bearbeiten" type="text" [value]="editGenre.name" (input)="editGenre.name = $event.target.value">
+                    <button class="btn btn-default nomargin" (click)="onCitySaveNameButtonClicked()">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                    </button>
+                    <button class="btn btn-default nomargin">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true" (click)="onCitySaveAddButtonClicked()"></span>
+                    </button>
+                </form>
+
+                <label>Künstler</label>
+                <form class="form-inline">
+                    <select class="form-control selectpicker" style="width: 200px">
+                        <option *ngFor="let artist of artists" [selected]="artist.selected">{{artist.name}}</option>
+                    </select>
+                    <button class="btn btn-danger nomargin">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button>
+                    <button class="btn btn-default nomargin">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </button>
+                    <input class="form-control" type="text" title="Künstlername zum Anlegen oder bearbeiten" [value]="editGenre.name" (input)="editGenre.name = $event.target.value">
+                    <button class="btn btn-default nomargin">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                    </button>
+                    <button class="btn btn-default nomargin">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                </form>
+
+                <label>Genre</label>
+                <form class="form-inline">
+                    <select class="form-control selectpicker" style="width: 200px" (change)="onGenreSelectionChanged($event.target.value)">
+                        <option *ngFor="let genre of genres" [selected]="genre.selected">{{genre.name}}</option>
+                    </select>
+                    <button class="btn btn-danger nomargin">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button>
+                    <button class="btn btn-default nomargin">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </button>
+                    <input class="form-control" type="text" title="Genrename zum Anlegen oder bearbeiten" [value]="editGenre.name" (input)="editGenre.name = $event.target.value">
+                    <button class="btn btn-default nomargin">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                    </button>
+                    <button class="btn btn-default nomargin">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                </form>
+            </div>
+        </form>
+        <div class="well nomargin" style="height: 70px;">
+            <div class="pull-left">
+                <div class="btn-group pull-left">
+                    <button [disabled]="buttonsDisabled" class="btn btn-default nomargin" (click)="onCancelClicked()">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> 
+                        Alle Gigs
+                    </button>
+                    <button class="btn btn-default nomargin" (click)="onSaveClicked()">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 
+                        Speichern
+                    </button>
+                </div>
+            </div>
+            <div class="pull-right">
+                <div class="btn-group  pull-right">
+                    <button class="btn btn-success nomargin" title="Bereitet einen weiteren neuen Gig vor" (click)="onSaveClicked()">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
+                    Weiteren Gig
+                </button>
+                    <button [disabled]="buttonsDisabled" class="btn btn-danger nomargin" (click)="onDeleteGigClicked()">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 
+                    Löschen
+                </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

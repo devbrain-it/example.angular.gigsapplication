@@ -1,0 +1,23 @@
+table.gigTable {
+  background-color: white;
+  height: auto;
+  vertical-align: top;
+}
+
+table.gigTable tbody td {
+  padding: 5px;
+  text-align: center;
+  border-bottom: 1px solid gray;
+}
+
+table.gigTable thead td {
+  padding: 5px;
+  text-align: center;
+  background-color: lightslategray;
+  color: white;
+}
+
+table.gigTable td input[type=button] {
+  width: 100%;
+  text-align: center;
+}

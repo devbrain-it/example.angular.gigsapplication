@@ -1,0 +1,21 @@
+<div class="header-block" style="text-align: center">
+  <h2 style="margin: 0px; padding: 10px; color: white">{{title}}</h2>
+</div>
+<div class="d-flex justify-content-start" style="height: 100%; width: 100%">
+  <div class="pull-left content-block" style="width: 300px; margin-left: 15px; margin-right: 15px; overflow-x: hidden;">
+    <user-login>Loading ...</user-login>
+    <impressum>Loading ...</impressum>
+    <div style="margin-bottom: 20px"></div>
+  </div>
+  <div class="content-block">
+    <ng-container [ngTemplateOutlet]="currentTemplate" [ngOutletContext]="templateContext"></ng-container>
+  </div>
+</div>
+<ng-template #defaultTemplate>
+  <gig-table [gigs]="templateContext">Loading ...</gig-table>
+</ng-template>
+<ng-template #gigEditTemplate>
+  <gig-edit-form [gig]="templateContext">Loading ...</gig-edit-form>
+</ng-template>
+<dialog-view>Loading ...</dialog-view>
+<bubble>Loading ...</bubble>
