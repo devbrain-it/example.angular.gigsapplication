@@ -30,11 +30,11 @@ public abstract class DefaultMySqlDatabase implements IDao {
 	}
 	
 	protected String getPasswordBase64() {
-		return "YXJub2xkNDcwMA==";
+		return "dYXJub2xkNDcwMA==IT";
 	}
 	
 	protected String getUsernameBase64() {
-		return "ZWNyZWF0b3Jz";
+		return "dZWNyZWF0b3JzIT";
 	}
 	
 	protected String getDatabaseName() {
